@@ -1,0 +1,13 @@
+**/.cache/
+**/.hw/
+**/.ip_user_files/
+**/.sim/
+**/.xpr/
+**/.wpc/
+**/.lpr/
+
+**/.runs/
+**/.Xil/
+*.jou
+*.log
+*.str
