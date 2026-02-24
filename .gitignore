@@ -1,13 +1,36 @@
-**/.cache/
-**/.hw/
-**/.ip_user_files/
-**/.sim/
-**/.xpr/
-**/.wpc/
-**/.lpr/
+################################
+# Vivado auto generated
+################################
 
-**/.runs/
-**/.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.Xil/
+
+################################
+# Simulation outputs
+################################
+
 *.jou
 *.log
+*.pb
+*.wdb
 *.str
+
+################################
+# Generated project files
+################################
+
+*.wpc
+*.lpr
+
+################################
+# OS / Editor
+################################
+
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
