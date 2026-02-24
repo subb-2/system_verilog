@@ -109,9 +109,20 @@ class scoreboard;
     endfunction //new()
 
     task run ();
+        logic [32:0] scb_result;
         forever begin
             mon2scb_mbox.get(tr);
-            $display("%t : a = %d, b = %d, mode = %d, s = %d, c = %d", $time, tr.a, tr.b, tr.mode, tr.s, tr.c);
+            if (tr.mode) begin
+                scb_result = tr.a - tr.b;
+            end else begin
+                scb_result = tr.a + tr.b;
+            end
+            if (scb_result == {tr.c, tr.s}) begin
+                $display("[PASS!!!] : %t : a = %d, b = %d, mode = %d, s = %d, c = %d", $time, tr.a, tr.b, tr.mode, tr.s, tr.c);
+            end else begin
+                $display("[FAIL!!!] : %t : a = %d, b = %d, mode = %d, s = %d, c = %d", $time, tr.a, tr.b, tr.mode, tr.s, tr.c);
+            end
+            
             -> gen_next_ev;
         end
 
