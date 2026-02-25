@@ -41,7 +41,7 @@ class transaction;
     //}
 
     //constraint list_pattern {
-    //    a = {0, 32'hffff_ffff, 32'h0000_ffff};
+    //    a inside {0, 32'hffff_ffff, 32'h0000_ffff};
     //}
 
     constraint inside_pattern {a inside {[0 : 16]};}
