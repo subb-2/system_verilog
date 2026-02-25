@@ -12,9 +12,9 @@ endinterface  //adder_interf
 
 //transaction : random 값 담긴 곳 
 class transaction;
-    rand bit [31:0] a;
-    rand bit [31:0] b;
-    rand bit mode;
+    randc bit [31:0] a;
+    randc bit [31:0] b;
+    randc bit mode;
     logic    [31:0] s; // rand로 생성 안하고 logic이므로 gen에서 x로 나타남 
     logic c;
 
@@ -24,6 +24,27 @@ class transaction;
             name, a, b, mode, s,
             c);  //모든 객체에 다 들어있으므로, 이곳에 제작 
     endtask  //display
+    
+    // 범위 지정 
+    // constraint range {
+    //     a >10;
+    //     a > 32'hffff_0000;
+    // }
+
+    //확률 지정
+    //constraint dist_pattern {
+    //    a dist {
+    //        0 :/80,
+    //        32'hffff_ffff :/ 10,
+    //        [1:32'hffff_fffe] :/ 10
+    //    };
+    //}
+
+    //constraint list_pattern {
+    //    a = {0, 32'hffff_ffff, 32'h0000_ffff};
+    //}
+
+    constraint inside_pattern {a inside {[0 : 16]};}
 endclass  //transaction
 
 //generator : randomrize 하는 곳 
