@@ -110,16 +110,18 @@ class scoreboard;
     endfunction  //new()
 
     task run();
-        mon2scb_mbox.get(tr);
-        if (tr.wdata == tr.rdata) begin
-            $display("%t : Pass : wdata = %h, rdata = %h", $time, tr.wdata,
-                     tr.rdata);
-        end else begin
-            $display("%t : Fail : wdata = %h, rdata = %h", $time, tr.wdata,
-                     tr.rdata);
+        forever begin
+            mon2scb_mbox.get(tr);
+            if (tr.wdata == tr.rdata) begin
+                $display("%t : Pass : wdata = %h, rdata = %h", $time, tr.wdata,
+                        tr.rdata);
+            end else begin
+                $display("%t : Fail : wdata = %h, rdata = %h", $time, tr.wdata,
+                        tr.rdata);
+            end
+            tr.display("scb");
+            -> gen_next_ev;
         end
-        tr.display("scb");
-        -> gen_next_ev;
     endtask  //run()
 endclass  //scoreboard
 
