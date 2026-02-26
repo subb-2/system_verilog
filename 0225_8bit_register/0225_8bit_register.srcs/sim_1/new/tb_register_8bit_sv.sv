@@ -5,6 +5,12 @@ interface register_interface;
     logic       rst;
     logic [7:0] wdata;
     logic [7:0] rdata;
+
+    property preset_check;
+        @(posedge clk) rst |=> (rdata == 0);
+    endproperty
+    reg_reset_check : assert property(preset_check) else $display("%t : Assert error : reset check", $time);
+    
 endinterface  //register_interface
 
 class transaction;
@@ -14,7 +20,7 @@ class transaction;
 
     task display(string name);
         $display("%t : [%s] wdata = %h, rdata = %h", $time, name, wdata, rdata);
-    endtask //display
+    endtask  //display
 
 endclass  //transaction
 
@@ -26,14 +32,17 @@ class generator;
 
     function new(mailbox#(transaction) gen2drv_mbox, event gen_next_ev);
         this.gen2drv_mbox = gen2drv_mbox;
-        this.gen_next_ev = gen_next_ev;
+        this.gen_next_ev  = gen_next_ev;
     endfunction  //new()
 
     //run_count만큼 작동할? 
     task run(int run_count);
         repeat (run_count) begin
             tr = new();
-            tr.randomize();
+            
+            assert (tr.randomize())
+            else $display("[gen] tr.randomize() error!!!");
+            
             gen2drv_mbox.put(tr);
             tr.display("gen");
             @(gen_next_ev);
@@ -63,14 +72,15 @@ class driver;
     endtask  //run()
 
     task preset();
-    //register F/F reset 
+        //register F/F reset 
         register_if.clk = 0;
         register_if.rst = 1;
+        register_if.wdata = 0;
         @(posedge register_if.clk);
         @(posedge register_if.clk);
         register_if.rst = 0;
         @(posedge register_if.clk);
-    endtask //prreset
+    endtask  //prreset
 
 endclass  //driver
 
@@ -106,7 +116,7 @@ class scoreboard;
 
     function new(mailbox#(transaction) mon2scb_mbox, event gen_next_ev);
         this.mon2scb_mbox = mon2scb_mbox;
-        this.gen_next_ev = gen_next_ev;
+        this.gen_next_ev  = gen_next_ev;
     endfunction  //new()
 
     task run();
@@ -114,27 +124,27 @@ class scoreboard;
             mon2scb_mbox.get(tr);
             if (tr.wdata == tr.rdata) begin
                 $display("%t : Pass : wdata = %h, rdata = %h", $time, tr.wdata,
-                        tr.rdata);
+                         tr.rdata);
             end else begin
                 $display("%t : Fail : wdata = %h, rdata = %h", $time, tr.wdata,
-                        tr.rdata);
+                         tr.rdata);
             end
             tr.display("scb");
-            -> gen_next_ev;
+            ->gen_next_ev;
         end
     endtask  //run()
 endclass  //scoreboard
 
 class environment;
-    generator  gen;
-    driver     drv;
-    monitor    mon;
-    scoreboard scb;
+    generator              gen;
+    driver                 drv;
+    monitor                mon;
+    scoreboard             scb;
 
     mailbox #(transaction) gen2drv_mbox;
     mailbox #(transaction) mon2scb_mbox;
-    
-    event gen_next_ev;
+
+    event                  gen_next_ev;
 
     function new(virtual register_interface register_if);
         gen2drv_mbox = new;
@@ -156,12 +166,12 @@ class environment;
         join_any
         #20;
         $stop;
-    endtask //run
+    endtask  //run
 endclass  //environment
 
 module tb_register_8bit_sv ();
 
-    register_interface register_if();
+    register_interface register_if ();
     environment env;
 
     register_8bit dut (
