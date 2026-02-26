@@ -107,9 +107,19 @@ class scorboard;
     mailbox #(transaction)       mon2scb_mbox;
     event                        gen_next_ev;
 
+    //coverage
+    covergroup cg_sram;
+        cp_addr: coverpoint tr.addr {
+            bins min = {0}; //bins : 대상 
+            bins max = {15};
+            bins mid = {[1:14]};
+        }
+    endgroup
+
     function new(mailbox#(transaction) mon2scb_mbox, event gen_next_ev);
         this.mon2scb_mbox = mon2scb_mbox;
         this.gen_next_ev  = gen_next_ev;
+        cg_sram = new();
     endfunction  //new()
 
     task run();
@@ -117,10 +127,13 @@ class scorboard;
         forever begin
             mon2scb_mbox.get(tr);
             tr.display("scb");
+
+            cg_sram.sample(); //자동 업데이트 
             // pass, fail
             if (tr.we) begin
                 expected_ram[tr.addr] = tr.wdata;
-                $display("%2h", expected_ram[tr.addr]);
+                //$display("%2h", expected_ram[tr.addr]);
+                //coverage 추가하면 이거 없어도 돼?
             end else begin
                 if (expected_ram[tr.addr] === tr.rdata) begin
                     $display("Pass");
@@ -168,6 +181,8 @@ class environment;
         join_any
 
         #10;
+        //coverage 몇 개 test 해보았는지 출력 
+        $display("coverage addr = %d", scb.cg_sram.get_inst_coverage()); 
         $stop;
     endtask  //run
 endclass  //environment
