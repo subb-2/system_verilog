@@ -144,7 +144,6 @@ module datapath (
         .out_data(out)
     );
 
-
     mux_2x1 U_IREG_SRC_MUX (
         .a      (0),             //sel 0
         .b      (alu_out),       //sel 1
@@ -186,7 +185,6 @@ module datapath (
         .sel    (alusrcsel),
         .mux_out(alusrc_data)
     );
-
 
     alu U_ALU (
         .a(ireg_out),  //from ireg
