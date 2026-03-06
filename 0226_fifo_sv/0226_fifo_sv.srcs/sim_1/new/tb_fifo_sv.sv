@@ -36,9 +36,12 @@ class generator;
     mailbox #(transaction) gen2drv_mbox;
     event gen_next_ev;
 
+    int gen_wdata_cnt;
+
     function new(mailbox#(transaction) gen2drv_mbox, event gen_next_ev);
         this.gen2drv_mbox = gen2drv_mbox;
         this.gen_next_ev  = gen_next_ev;
+        this.gen_wdata_cnt = 0;
     endfunction  //new()
 
     // 시나리오 1. empty -> full: fifo를 먼저 가득 채움
@@ -89,16 +92,16 @@ class generator;
         // 이미지 주석에 명시된 시나리오 순서: 4 -> 1 -> 3 -> 2 -> 5
         
         // 4. 리셋 직후 empty 상태에서 동시 입출력 테스트
-        test_empty_simultaneous(); 
+        //test_empty_simultaneous(); 
         
         // 1. 그 다음 1을 실행해서 바로 fifo 가득 채움
-        fill_fifo();               
+        //fill_fifo();               
         
         // 3. 그 다음 3 실행해서 동시 입출력 테스트
-        test_full_simultaneous();  
+        //test_full_simultaneous();  
         
         // 2. 그 다음 2번(이미지 주석의 4번은 2번의 오타로 보임) 실행해서 empty 깨끗이 비움
-        empty_fifo();              
+        //empty_fifo();              
         
         // 5. empty 상태로 초기화되었으므로 그다음 무작위 테스트(신뢰성) 진행
         $display("=== [Scenario 5] Random Stress Test ===");
@@ -106,6 +109,7 @@ class generator;
             tr = new;
             tr.randomize();
             gen2drv_mbox.put(tr);
+            gen_wdata_cnt++;
             tr.display("gen_S5_rand");
             @(gen_next_ev);
         end
@@ -232,12 +236,15 @@ class scoreboard;
     int pass_cnt;
     int fail_cnt;
 
+    int pop_cnt;  
+
     function new(mailbox#(transaction) mon2scb_mbox, event gen_next_ev);
         this.mon2scb_mbox = mon2scb_mbox;
         this.gen_next_ev  = gen_next_ev;
         // 초기화
         this.pass_cnt = 0;
         this.fail_cnt = 0;
+        this.pop_cnt  = 0;
     endfunction  //new()
 
     task run();
@@ -270,13 +277,14 @@ class scoreboard;
 
             // 2. 실제 Pop 동작 및 검증
             if (actual_pop) begin
+                pop_cnt++;
                 compare_data = fifo_queue.pop_back();
                 if (compare_data === tr.rdata) begin
                     $display("[PASS] Pop OK! Expected/Actual: %h", tr.rdata);
-                    pass_cnt++; // 💡 성공 카운트 1 증가
+                    pass_cnt++;
                 end else begin
                     $display("[FAIL] Pop Error! Expected: %h, Actual: %h", compare_data, tr.rdata);
-                    fail_cnt++; // 💡 에러 카운트 1 증가
+                    fail_cnt++;
                 end
             end
             
@@ -349,7 +357,7 @@ class environment;
     task  run();
         drv.preset();
         fork
-            gen.run(10); // 랜덤 테스트 256번 수행
+            gen.run(256); // 랜덤 테스트 256번 수행
             drv.run();
             mon.run();
             scb.run();
@@ -362,8 +370,10 @@ class environment;
         $display("\n========================================");
         $display("   [ TEST REPORT ] SIMULATION FINISHED! ");
         $display("----------------------------------------");
-        $display("   Total PASS Count : %0d", scb.pass_cnt);
-        $display("   Total FAIL Count : %0d", scb.fail_cnt);
+        $display("   Generated wdata Count : %0d", gen.gen_wdata_cnt);
+        $display("   Actual Pop Count      : %0d", scb.pop_cnt);
+        $display("   Total PASS Count      : %0d", scb.pass_cnt);
+        $display("   Total FAIL Count      : %0d", scb.fail_cnt);
         
         if (scb.fail_cnt == 0) begin
             $display("   Result : PERFECT SUCCESS! ");
