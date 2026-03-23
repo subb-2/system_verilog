@@ -161,6 +161,7 @@ module control_unit (
                         branch      = 1'b1;
                     end
                     `S_TYPE: begin
+                        alu_src     = 1'b1;
                         alu_control = 4'b0000;
                     end
                     `IL_TYPE: begin
@@ -224,6 +225,8 @@ module control_unit (
                     `J_TYPE, `JL_TYPE: begin
                         rf_we    = 1'b1;
                         rfwd_src = 3'd4;
+                        jal      = 1'b1;                 // 타겟 주소가 PC+4로 덮어씌워지는 것 방지!
+                        if (opcode == `JL_TYPE) jalr = 1'b1; // JALR 타겟 유지
                     end
                 endcase
             end
