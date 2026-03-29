@@ -222,12 +222,17 @@ module ascii_sender (
                         tx_start = 1;
                         n_state = WAIT;
                     end
+                    4'd12: begin
+                        tx_data = 8'h0A; // Line Feed (\n) : 커서를 아래로
+                        tx_start = 1;
+                        n_state = WAIT;
+                    end
                 endcase
             end
             
             WAIT: begin
                 if (tx_done) begin
-                   if (send_cnt_reg == 10) begin
+                   if (send_cnt_reg == 12) begin
                         send_cnt_next = 0;
                         n_state = IDLE;
                     end else begin
