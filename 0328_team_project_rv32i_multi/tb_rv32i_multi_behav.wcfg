@@ -11,15 +11,19 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="980001fs"></ZoomEndTime>
-      <Cursor1Time time="195000fs"></Cursor1Time>
+      <ZoomStartTime time="944367fs"></ZoomStartTime>
+      <ZoomEndTime time="1141768fs"></ZoomEndTime>
+      <Cursor1Time time="955000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="277"></NameColumnWidth>
-      <ValueColumnWidth column_width="125"></ValueColumnWidth>
+      <NameColumnWidth column_width="268"></NameColumnWidth>
+      <ValueColumnWidth column_width="127"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="34" />
+   <wave_markers>
+      <marker time="955000" label="" />
+      <marker time="1025000" label="" />
+   </wave_markers>
    <wvobject fp_name="/tb_rv32i_multi/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,6 +35,7 @@
    <wvobject fp_name="/tb_rv32i_multi/dut/instr_addr" type="array">
       <obj_property name="ElementShortName">instr_addr[31:0]</obj_property>
       <obj_property name="ObjectShortName">instr_addr[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_rv32i_multi/dut/instr_data" type="array">
       <obj_property name="ElementShortName">instr_data[31:0]</obj_property>
@@ -456,9 +461,94 @@
          <obj_property name="ObjectShortName">alu_control[3:0]</obj_property>
       </wvobject>
    </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/instr_data" type="array">
+      <obj_property name="ElementShortName">instr_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instr_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/bus_rdata" type="array">
+      <obj_property name="ElementShortName">bus_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bus_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/bus_ready" type="logic">
+      <obj_property name="ElementShortName">bus_ready</obj_property>
+      <obj_property name="ObjectShortName">bus_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/instr_addr" type="array">
+      <obj_property name="ElementShortName">instr_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instr_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/bus_wreq" type="logic">
+      <obj_property name="ElementShortName">bus_wreq</obj_property>
+      <obj_property name="ObjectShortName">bus_wreq</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/bus_rreq" type="logic">
+      <obj_property name="ElementShortName">bus_rreq</obj_property>
+      <obj_property name="ObjectShortName">bus_rreq</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/o_funct3" type="array">
+      <obj_property name="ElementShortName">o_funct3[2:0]</obj_property>
+      <obj_property name="ObjectShortName">o_funct3[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/bus_addr" type="array">
+      <obj_property name="ElementShortName">bus_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bus_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/bus_wdata" type="array">
+      <obj_property name="ElementShortName">bus_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bus_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/pc_en" type="logic">
+      <obj_property name="ElementShortName">pc_en</obj_property>
+      <obj_property name="ObjectShortName">pc_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/rf_we" type="logic">
+      <obj_property name="ElementShortName">rf_we</obj_property>
+      <obj_property name="ObjectShortName">rf_we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/alu_src" type="logic">
+      <obj_property name="ElementShortName">alu_src</obj_property>
+      <obj_property name="ObjectShortName">alu_src</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/branch" type="logic">
+      <obj_property name="ElementShortName">branch</obj_property>
+      <obj_property name="ObjectShortName">branch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/jal" type="logic">
+      <obj_property name="ElementShortName">jal</obj_property>
+      <obj_property name="ObjectShortName">jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/jalr" type="logic">
+      <obj_property name="ElementShortName">jalr</obj_property>
+      <obj_property name="ObjectShortName">jalr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/rfwd_src" type="array">
+      <obj_property name="ElementShortName">rfwd_src[2:0]</obj_property>
+      <obj_property name="ObjectShortName">rfwd_src[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/alu_result" type="array">
+      <obj_property name="ElementShortName">alu_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/alu_pc_out" type="array">
+      <obj_property name="ElementShortName">alu_pc_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_pc_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/alu_control" type="array">
+      <obj_property name="ElementShortName">alu_control[3:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_control[3:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="group147" type="group">
       <obj_property name="label">datapath</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/clk" type="logic">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -583,6 +673,7 @@
    <wvobject fp_name="group189" type="group">
       <obj_property name="label">reg file</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/clk" type="logic">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -622,11 +713,138 @@
       <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file" type="array">
          <obj_property name="ElementShortName">register_file[1:31][31:0]</obj_property>
          <obj_property name="ObjectShortName">register_file[1:31][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[1]" type="array">
+            <obj_property name="ElementShortName">[1][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[2]" type="array">
+            <obj_property name="ElementShortName">[2][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[3]" type="array">
+            <obj_property name="ElementShortName">[3][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[4]" type="array">
+            <obj_property name="ElementShortName">[4][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[5]" type="array">
+            <obj_property name="ElementShortName">[5][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[6]" type="array">
+            <obj_property name="ElementShortName">[6][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[7]" type="array">
+            <obj_property name="ElementShortName">[7][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[8]" type="array">
+            <obj_property name="ElementShortName">[8][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][31:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[9]" type="array">
+            <obj_property name="ElementShortName">[9][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[9][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[10]" type="array">
+            <obj_property name="ElementShortName">[10][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[11]" type="array">
+            <obj_property name="ElementShortName">[11][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[12]" type="array">
+            <obj_property name="ElementShortName">[12][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[12][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[13]" type="array">
+            <obj_property name="ElementShortName">[13][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[13][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[14]" type="array">
+            <obj_property name="ElementShortName">[14][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[14][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[15]" type="array">
+            <obj_property name="ElementShortName">[15][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[15][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[16]" type="array">
+            <obj_property name="ElementShortName">[16][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[16][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[17]" type="array">
+            <obj_property name="ElementShortName">[17][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[17][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[18]" type="array">
+            <obj_property name="ElementShortName">[18][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[18][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[19]" type="array">
+            <obj_property name="ElementShortName">[19][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[19][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[20]" type="array">
+            <obj_property name="ElementShortName">[20][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[20][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[21]" type="array">
+            <obj_property name="ElementShortName">[21][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[21][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[22]" type="array">
+            <obj_property name="ElementShortName">[22][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[22][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[23]" type="array">
+            <obj_property name="ElementShortName">[23][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[23][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[24]" type="array">
+            <obj_property name="ElementShortName">[24][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[24][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[25]" type="array">
+            <obj_property name="ElementShortName">[25][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[25][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[26]" type="array">
+            <obj_property name="ElementShortName">[26][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[26][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[27]" type="array">
+            <obj_property name="ElementShortName">[27][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[27][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[28]" type="array">
+            <obj_property name="ElementShortName">[28][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[28][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[29]" type="array">
+            <obj_property name="ElementShortName">[29][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[29][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[30]" type="array">
+            <obj_property name="ElementShortName">[30][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[30][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_rv32i_multi/dut/U_RV32I/U_DATAPATH/U_REG_FILE/register_file[31]" type="array">
+            <obj_property name="ElementShortName">[31][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[31][31:0]</obj_property>
+         </wvobject>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group231" type="group">
       <obj_property name="label">master</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_rv32i_multi/dut/U_APB_MASTER/PCLK" type="logic">
          <obj_property name="ElementShortName">PCLK</obj_property>
          <obj_property name="ObjectShortName">PCLK</obj_property>
@@ -751,6 +969,7 @@
    <wvobject fp_name="group200" type="group">
       <obj_property name="label">bram</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_rv32i_multi/dut/U_BRAM/PCLK" type="logic">
          <obj_property name="ElementShortName">PCLK</obj_property>
          <obj_property name="ObjectShortName">PCLK</obj_property>
@@ -790,6 +1009,7 @@
       <wvobject fp_name="/tb_rv32i_multi/dut/U_BRAM/bmem" type="array">
          <obj_property name="ElementShortName">bmem[0:1024][31:0]</obj_property>
          <obj_property name="ObjectShortName">bmem[0:1024][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
    </wvobject>
 </wave_config>
