@@ -57,7 +57,7 @@ module spi_master (
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             state        <= IDLE;
-            mosi         <= 1'b1;
+            mosi         <= 1'bz;
             cs_n         <= 1'b1;
             busy         <= 1'b0;
             done         <= 1'b0;
@@ -72,7 +72,7 @@ module spi_master (
             done <= 1'b0;
             case (state)
                 IDLE: begin
-                    mosi   <= 1'b1;
+                    mosi   <= 1'bz;
                     cs_n   <= 1'b1;
                     sclk_r <= cpol;
                     if (start) begin
@@ -131,7 +131,7 @@ module spi_master (
                     cs_n   <= 1'b1;
                     done   <= 1'b1;
                     busy   <= 1'b0;
-                    mosi   <= 1'b1;
+                    mosi   <= 1'bz;
                     state  <= IDLE;
                 end
                 default: begin
