@@ -3,6 +3,8 @@
 module spi_master (
     input  logic       clk,
     input  logic       rst,
+    input  logic       cpol, // idle 0: Low, 1: High 
+    input  logic       cpha, // first sampling 0: first dege, 1: second edge 
     input  logic [7:0] clk_div,
     input  logic [7:0] tx_data,
     input  logic       start,
@@ -14,6 +16,8 @@ module spi_master (
     input  logic       miso,
     output logic       cs_n
 );
+    
+    
 
     typedef enum logic [1:0] {
         IDLE  = 2'b00,
@@ -28,7 +32,7 @@ module spi_master (
     logic             half_tick;
     logic [7:0] tx_shift_reg, rx_shift_reg;
     logic [2:0] bit_cnt;
-    logic phase, sclk_r;
+    logic step, sclk_r;
 
     assign sclk = sclk_r;
 
@@ -60,9 +64,9 @@ module spi_master (
             tx_shift_reg <= 0;
             rx_shift_reg <= 0;
             bit_cnt      <= 0;
-            phase        <= 1'b0;
+            step         <= 1'b0;
             rx_data      <= 0;
-            sclk_r       <= 1'b0;
+            sclk_r       <= cpol;
         end else begin
             //done은 한 클락만 발생하기 위함 
             done <= 1'b0;
@@ -70,36 +74,52 @@ module spi_master (
                 IDLE: begin
                     mosi   <= 1'b1;
                     cs_n   <= 1'b1;
-                    sclk_r <= 1'b0;
+                    sclk_r <= cpol;
                     if (start) begin
                         tx_shift_reg <= tx_data;
                         bit_cnt      <= 0;
-                        phase        <= 1'b0;
+                        step         <= 1'b0;
                         busy         <= 1'b1;
                         cs_n         <= 1'b0;
                         state        <= START;
                     end
                 end
                 START: begin
-                    mosi         <= tx_shift_reg[7];
-                    tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
-                    state        <= DATA;
+                    if (!cpha) begin
+                        mosi         <= tx_shift_reg[7];
+                        tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+                    end
+                    state <= DATA;
                 end
                 DATA: begin
                     if (half_tick) begin
-                        sclk = ~sclk;
-                        if (phase == 0) begin  // 수신 구간 
-                            phase        <= 1'b1;
-                            rx_shift_reg <= {rx_shift_reg[6:0], miso};
-                        end else begin  // 송신 구간 
-                            phase <= 1'b0;
-                            if (bit_cnt < 7) begin
+                        sclk_r = ~sclk_r;
+                        if (step == 0) begin  // 수신 구간 
+                            step <= 1'b1;
+                            if (!cpha) begin
+                                rx_shift_reg <= {rx_shift_reg[6:0], miso};
+                            end else begin
                                 mosi         <= tx_shift_reg[7];
                                 tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
                             end
+                        end else begin  // 송신 구간 
+                            step <= 1'b0;
+                            if (!cpha) begin
+                                if (bit_cnt < 7) begin
+                                    mosi         <= tx_shift_reg[7];
+                                    tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+                                end
+                            end else begin
+                                rx_shift_reg <= {rx_shift_reg[6:0], miso};
+                            end
                             if (bit_cnt == 7) begin
-                                state   <= STOP;
-                                rx_data <= rx_shift_reg;
+                                state <= STOP;
+                                if (!cpha) begin
+                                    rx_data <= rx_shift_reg;
+                                end else begin
+                                    //rx_data <= rx_shift_reg;
+                                    rx_data <= {rx_shift_reg[6:0], miso};
+                                end
                             end else begin
                                 bit_cnt <= bit_cnt + 1;
                             end

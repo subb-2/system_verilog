@@ -3,12 +3,15 @@
 module tb_spi_master ();
 
     logic clk, rst;
+    logic cpol, cpha;
     logic [7:0] clk_div, tx_data, rx_data;
     logic start, done, busy, sclk, mosi, miso, cs_n;
 
     spi_master dut (
         .clk(clk),
         .rst(rst),
+        .cpol(cpol),
+        .cpha(cpha),
         .clk_div(clk_div),
         .tx_data(tx_data),
         .start(start),
@@ -25,6 +28,21 @@ module tb_spi_master ();
 
     //loop 
     assign miso = mosi;
+    
+    task spi_set_mode (logic [1:0] mode);
+        {cpol, cpha} = mode; 
+        @(posedge clk);
+    endtask //spi_set_mode
+
+    task spi_send_data (logic [7:0] data);
+        tx_data = data;
+        start   = 1'b1;
+        @(posedge clk);
+        start = 1'b0;
+        @(posedge clk);
+        wait (done);
+        @(posedge clk);
+    endtask //spi_send
 
     initial begin
         clk = 0;
@@ -32,26 +50,21 @@ module tb_spi_master ();
         repeat (3) @(posedge clk);
         rst = 0;
         @(posedge clk);
-        clk_div = 4;
+        clk_div = 4; // sclk = 10MHz : (100MHz / (10MHz * 2)) - 1
         //miso = 1'b0;
         @(posedge clk);
-        //한 번만 보냄 
-        tx_data = 8'haa;
-        start = 1'b1;
-        @(posedge clk);
-        start = 1'b0;
+        
+        spi_set_mode(0);
+        spi_send_data(8'h55);
 
-        @(posedge clk);
-        wait(done);
+        spi_set_mode(1);
+        spi_send_data(8'h55);
+        
+        spi_set_mode(2);
+        spi_send_data(8'h55);
 
-        @(posedge clk);
-        tx_data = 8'h55;
-        start = 1'b1;
-        @(posedge clk);
-        start = 1'b0;
-
-        @(posedge clk);
-        wait(done);
+        spi_set_mode(3);
+        spi_send_data(8'h55);        
 
         @(posedge clk);
         #20;
