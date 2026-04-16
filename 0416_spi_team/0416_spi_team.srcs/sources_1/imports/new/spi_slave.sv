@@ -6,7 +6,7 @@ module spi_slave (
     input  logic       sclk,
     input  logic       mosi,
     output logic       miso,
-    input  logic       busy,
+    //input  logic       busy,
     input  logic       cs_n,
     input  logic [7:0] tx_data,
     output logic [7:0] rx_data,
