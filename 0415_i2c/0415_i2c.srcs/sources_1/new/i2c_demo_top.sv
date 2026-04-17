@@ -27,12 +27,15 @@ module i2c_demo_top (
     logic             cmd_write;
     logic             cmd_read;
     logic             cmd_stop;
-    logic       [7:0] tx_data;
+    logic       [7:0] m_tx_data;
     logic             ack_in;  //master가 받는 것
-    logic       [7:0] rx_data;
+    logic       [7:0] m_rx_data;
     logic             done;
     logic             ack_out;  //master가 주는 것 
     logic             busy;
+
+    logic       [7:0] s_tx_data;
+    logic       [7:0] s_rx_data;
 
 
     I2C_Master_top U_I2C_MASTER_TOP (
@@ -42,14 +45,23 @@ module i2c_demo_top (
         .cmd_write(cmd_write),
         .cmd_read (cmd_read),
         .cmd_stop (cmd_stop),
-        .tx_data  (tx_data),
+        .tx_data  (m_tx_data),
         .ack_in   (ack_in),
-        .rx_data  (rx_data),
+        .rx_data  (m_rx_data),
         .done     (done),
         .ack_out  (ack_out),
         .busy     (busy),
         .scl      (scl),
         .sda      (sda)
+    );
+
+    i2c_slave U_I2C_SlAVE (
+        .clk(clk),
+        .rst(rst),
+        .tx_data(s_tx_data),
+        .rx_data(s_rx_data),
+        .scl(scl),
+        .sda(sda)
     );
 
     always_ff @(posedge clk, posedge rst) begin
@@ -60,7 +72,7 @@ module i2c_demo_top (
             cmd_write <= 1'b0;
             cmd_read  <= 1'b0;
             cmd_stop  <= 1'b0;
-            tx_data   <= 0;
+            m_tx_data   <= 0;
         end else begin
             case (state)
                 IDLE: begin
@@ -86,7 +98,7 @@ module i2c_demo_top (
                     cmd_write <= 1'b1;
                     cmd_read  <= 1'b0;
                     cmd_stop  <= 1'b0;
-                    tx_data   <= SLA_W;
+                    m_tx_data   <= SLA_W;
                     if (done) begin
                         state <= WRITE;
                     end
@@ -96,7 +108,7 @@ module i2c_demo_top (
                     cmd_write <= 1'b1;
                     cmd_read  <= 1'b0;
                     cmd_stop  <= 1'b0;
-                    tx_data   <= counter;
+                    m_tx_data   <= counter;
                     if (done) begin
                         state <= STOP;
                     end

@@ -82,6 +82,7 @@ module i2c_master (
     //IDLE이 아니면 busy 
     assign busy  = (state != IDLE);
 
+    //통신 속도 
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             //들어오는 clk = 100MHz
