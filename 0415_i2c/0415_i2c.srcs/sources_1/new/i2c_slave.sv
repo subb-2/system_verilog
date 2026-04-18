@@ -78,6 +78,8 @@ module i2c_slave (
 
     logic [6:0] fnd_slave_addr;
 
+    logic bef_read, bef_write;
+
     //assign scl   = scl_r;
     assign sda_o = sda_r;
 
@@ -106,99 +108,126 @@ module i2c_slave (
             bit_cnt        <= 0;
             done           <= 0;
             ack_in_r       <= 1'b1;  //nack 상태 
+            bef_read       <= 0;
+            bef_write      <= 0;
         end else begin
             done <= 1'b0;
-            case (state)
-                IDLE: begin
-                    //case (step)
-                    //2'd0: begin
-                    //    if (sda_falling) begin
-                    //        step <= 1;
-                    //    end
-                    //end
-                    //2'd1: begin
-                    if (scl_edge_falling) begin
-                        //step  <= 0;
-                        state <= ADDR;
-                    end
-                    //end
-                    //endcase
-                end
-                ADDR: begin
-                    if (scl_edge_rise) begin
-                        rx_shift_reg <= {rx_shift_reg[6:0], sda_i};
-                    end
-                    if (scl_edge_falling) begin
-                        bit_cnt <= bit_cnt + 1;
-                        if (bit_cnt == 7) begin //7이되고 rise가 하나 더 왔을 때 0으로 됨 
-                            bit_cnt <= 0;
-                            if (rx_shift_reg[7:1] == SLAVE_ADDR) begin
-                                sda_r <= 1'b1;
-                                state <= DATA_ACK;
-                            end else begin
-                                sda_r <= 1'b1;
-                                state <= IDLE;
+            if (sda_rise && scl == 1'b1) begin
+                step  <= 0;
+                state <= IDLE;
+                bit_cnt  <= 0;
+                sda_r    <= 1'b1;
+                bef_read <= 0;
+                bef_write<= 0;
+            end else begin
+                case (state)
+                    IDLE: begin
+                        case (step)
+                            2'd0: begin
+                                if (sda_falling) begin
+                                    step <= 1;
+                                end
                             end
+                            2'd1: begin
+                                if (scl_edge_falling) begin
+                                    step  <= 0;
+                                    state <= ADDR;
+                                end
+                            end
+                        endcase
+                    end
+                    ADDR: begin
+                        if (scl_edge_rise) begin
+                            rx_shift_reg <= {rx_shift_reg[6:0], sda_i};
                         end
-                    end
-                end
-                // bit_cnt == 7 의 rise 
-                DATA_ACK: begin
-                    if (scl_edge_falling) begin
-                        sda_r   <= 1'b1;
-                        bit_cnt <= 0;
-                        if (rx_shift_reg[0] == 1'b0) begin
-                            state <= READ_DATA;
-                        end else begin
-                            //tx_shift_reg <= tx_data;
-                            state <= WRITE_DATA;
-                        end
-                    end
-                end
-
-                WRITE_DATA: begin
-                    if (scl_edge_rise) begin
-                        sda_r <= tx_shift_reg[7];
-                        tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
-                        bit_cnt <= bit_cnt + 1;
-                        if (bit_cnt == 7) begin
-                            bit_cnt <= 0;
-                            state   <= DATA_ACK;
-                        end
-                    end
-                end
-                READ_DATA: begin
-
-                    if (scl_edge_rise) begin
-                        rx_shift_reg <= {rx_shift_reg[6:0], sda_i};
-                    end
-                    if (scl_edge_falling) begin
+                        if (scl_edge_falling) begin
                             bit_cnt <= bit_cnt + 1;
-                        if (bit_cnt == 7) begin
-                            state   <= DATA_ACK;
-                            bit_cnt <= 0;
-                        end 
+                            if (bit_cnt == 7) begin //7이되고 rise가 하나 더 왔을 때 0으로 됨 
+                                rx_data <= rx_shift_reg;
+                                bit_cnt <= 0;
+                                if (rx_shift_reg[7:1] == SLAVE_ADDR) begin
+                                    sda_r <= 1'b0;
+                                    if (rx_shift_reg[0] == 1'b1) begin
+                                        bef_read  <= 1'b0;
+                                        bef_write <= 1'b1;
+                                    end else begin
+                                        //tx_shift_reg <= tx_data;
+                                        bef_write <= 1'b0;
+                                        bef_read  <= 1'b1;
+                                    end
+                                    state <= DATA_ACK;
+                                end else begin
+                                    sda_r <= 1'b1;
+                                    state <= IDLE;
+                                end
+                            end
+                        end
                     end
-                end
-                STOP: begin
-                    case (step)
-                        2'd0: begin
-                            if (scl_edge_rise) begin
-                                step <= 1;
+                    // bit_cnt == 7 의 rise 
+                    DATA_ACK: begin
+                        // write 명령을 받은 직후(slave가 ACK 보내야 하는 경우)
+                        if (bef_read) begin
+                            // master->slave 전송 후 slave ACK
+                            sda_r <= 1'b0;  // ACK 유지
+                        end else begin
+                            // slave->master 전송 후 master ACK 받아야 하므로 release
+                            sda_r <= 1'b1;  // release
+                        end
+
+                        if (scl_edge_rise) begin
+                            if (bef_write) begin
+                                ack_in_r <= sda_i;  // master ACK/NACK 샘플
                             end
                         end
-                        2'd1: begin
-                            if (sda_rise && scl == 1'b1) begin
-                                step  <= 0;
-                                state <= IDLE;
+
+                        if (scl_edge_falling) begin
+                            bit_cnt <= 0;
+
+                            if (bef_read) begin
+                                sda_r <= 1'b1;  // ACK 끝났으니 이제 release
+                                state <= READ_DATA;
+                            end
+
+                            if (bef_write) begin
+                                if (ack_in_r == 1'b0)
+                                    state <= WRITE_DATA;  // ACK면 계속
+                                else state <= IDLE;  // NACK면 종료
                             end
                         end
-                    endcase
-                end
-                default: begin
-                    state <= IDLE;
-                end
-            endcase
+                    end
+
+                    WRITE_DATA: begin
+                        if (scl_edge_rise) begin
+                            sda_r <= tx_shift_reg[7];
+                            tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+                        end
+                        if (scl_edge_falling) begin
+                            bit_cnt <= bit_cnt + 1;
+                            if (bit_cnt == 7) begin
+                                bit_cnt <= 0;
+                                state   <= DATA_ACK;  // falling에서 전환 → 다음 rising이 ACK 샘플링
+                            end
+                        end
+                    end
+                    READ_DATA: begin
+                        if (scl_edge_rise) begin
+                            rx_shift_reg <= {rx_shift_reg[6:0], sda_i};
+                        end
+                        if (scl_edge_falling) begin
+                            bit_cnt <= bit_cnt + 1;
+                            if (bit_cnt == 7) begin
+                                rx_data <= rx_shift_reg;
+                                state   <= DATA_ACK;
+                                sda_r   <= 1'b1;
+                                bit_cnt <= 0;
+                            end
+                        end
+                    end
+                    default: begin
+                        state <= IDLE;
+                    end
+                endcase
+            end
         end
     end
 
