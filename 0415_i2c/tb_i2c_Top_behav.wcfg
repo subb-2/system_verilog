@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1004075000fs"></ZoomStartTime>
-      <ZoomEndTime time="1032875001fs"></ZoomEndTime>
+      <ZoomStartTime time="981835000fs"></ZoomStartTime>
+      <ZoomEndTime time="1126235001fs"></ZoomEndTime>
       <Cursor1Time time="1020035000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="170"></NameColumnWidth>
+      <NameColumnWidth column_width="166"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="12" />
@@ -47,11 +47,11 @@
    <wvobject fp_name="/tb_i2c_Top/m_tx_data" type="array">
       <obj_property name="ElementShortName">m_tx_data[7:0]</obj_property>
       <obj_property name="ObjectShortName">m_tx_data[7:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/tb_i2c_Top/m_rx_data" type="array">
       <obj_property name="ElementShortName">m_rx_data[7:0]</obj_property>
       <obj_property name="ObjectShortName">m_rx_data[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/tb_i2c_Top/done" type="logic">
       <obj_property name="ElementShortName">done</obj_property>
@@ -100,6 +100,7 @@
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_MASTER_TOP/rx_data" type="array">
          <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
          <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_MASTER_TOP/U_I2C_TOP/state" type="array">
          <obj_property name="ElementShortName">state[2:0]</obj_property>
@@ -233,11 +234,11 @@
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_SlAVE/tx_shift_reg" type="array">
          <obj_property name="ElementShortName">tx_shift_reg[7:0]</obj_property>
          <obj_property name="ObjectShortName">tx_shift_reg[7:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_SlAVE/rx_shift_reg" type="array">
          <obj_property name="ElementShortName">rx_shift_reg[7:0]</obj_property>
          <obj_property name="ObjectShortName">rx_shift_reg[7:0]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_SlAVE/bit_cnt" type="array">
          <obj_property name="ElementShortName">bit_cnt[3:0]</obj_property>
@@ -246,6 +247,8 @@
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_SlAVE/ack_in_r" type="logic">
          <obj_property name="ElementShortName">ack_in_r</obj_property>
          <obj_property name="ObjectShortName">ack_in_r</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_Top/dut/U_I2C_SlAVE/busy" type="logic">
          <obj_property name="ElementShortName">busy</obj_property>

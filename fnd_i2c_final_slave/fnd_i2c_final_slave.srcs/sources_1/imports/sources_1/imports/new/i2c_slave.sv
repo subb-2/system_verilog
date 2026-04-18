@@ -106,6 +106,7 @@ module i2c_slave (
             step           <= 0;
             tx_shift_reg   <= 0;
             rx_shift_reg   <= 0;
+            rx_data        <= 0;
             bit_cnt        <= 0;
             done           <= 0;
             ack_in_r       <= 1'b1;  //nack 상태 

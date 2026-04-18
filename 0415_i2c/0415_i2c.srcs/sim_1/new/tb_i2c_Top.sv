@@ -18,6 +18,8 @@ module tb_i2c_Top ();
     logic [7:0] m_tx_data;
     logic [7:0] m_rx_data;
     logic       done;
+    logic [7:0] s_tx_data;
+    logic [7:0] s_rx_data;
 
     top_i2c dut (
         .clk(clk),
@@ -28,6 +30,8 @@ module tb_i2c_Top ();
         .cmd_stop(cmd_stop),
         .m_tx_data(m_tx_data),
         .m_rx_data(m_rx_data),
+        .s_tx_data(s_tx_data),
+        .s_rx_data(s_rx_data),
         .done(done)
     );
 
@@ -96,12 +100,12 @@ module tb_i2c_Top ();
     endtask  //i2c_write
 
     task i2c_read(byte data);
-        //s_tx_data = data;
+        s_tx_data = data;
         cmd_start = 1'b0;
         cmd_write = 1'b0;
         cmd_read  = 1'b1;
         cmd_stop  = 1'b0;
-        @(posedge clk); 
+        @(posedge clk);
         wait (done);  //wait ack 
         @(posedge clk);
     endtask  //i2c_read
@@ -116,7 +120,7 @@ module tb_i2c_Top ();
         wait (done);
         @(posedge clk);
     endtask  //i2c_stop
- 
+
     initial begin
         clk = 0;
         rst = 1;
