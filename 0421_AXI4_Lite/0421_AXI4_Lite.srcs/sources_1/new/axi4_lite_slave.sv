@@ -39,7 +39,9 @@ module axi4_lite_slave (
 
     always_ff @(posedge ACLK) begin
         if (write_plag) begin
-            mem[aw_addr[31:2]] <= WDATA;
+            if (WVALID && WREADY) begin
+                mem[aw_addr[31:2]] <= WDATA;
+            end
         end
         //else if (read_plag) begin
         //    RDATA = mem[ar_addr[31:2]];
@@ -116,8 +118,9 @@ module axi4_lite_slave (
             W_IDLE: begin
                 write_plag = 0;
                 WREADY = 0;
-                if (WVALID) begin
+                if (WVALID && AWREADY) begin
                     w_state_next = W_READY;
+                    //write_plag   = 1;
                 end
             end
             W_READY: begin

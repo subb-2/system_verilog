@@ -46,6 +46,7 @@ module tb_axi4_lite_top ();
         ARESETn = 1;
         repeat (3) @(posedge ACLK);
 
+    
         @(posedge ACLK);
         axi_write(32'h00000000, 32'h11111111);
         @(posedge ACLK);
