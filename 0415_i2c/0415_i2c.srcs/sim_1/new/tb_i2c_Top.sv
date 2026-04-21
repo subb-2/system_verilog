@@ -132,12 +132,12 @@ module tb_i2c_Top ();
         i2c_addr((SLA << 1) + 1'b0);
         i2c_write(8'h55);
         i2c_write(8'haa);
-        i2c_write(8'h01);
-        i2c_write(8'h02);
-        i2c_write(8'h03);
-        i2c_write(8'h04);
-        i2c_write(8'h05);
-        i2c_write(8'h06);
+        i2c_write(8'h12);
+        i2c_write(8'h34);
+        i2c_write(8'h21);
+        i2c_write(8'h43);
+        i2c_write(8'h77);
+        i2c_write(8'hcc);
         i2c_write(8'hff);
         i2c_stop();
 
@@ -145,12 +145,12 @@ module tb_i2c_Top ();
         i2c_addr((SLA << 1) + 1'b1);  // R/W = 1 (Read)
         i2c_read(8'h55);
         i2c_read(8'haa);
-        i2c_read(8'h01);
-        i2c_read(8'h02);
-        i2c_read(8'h03);
-        i2c_read(8'h04);
-        i2c_read(8'h05);
-        i2c_read(8'h06);
+        i2c_read(8'h12);
+        i2c_read(8'h34);
+        i2c_read(8'h21);
+        i2c_read(8'h43);
+        i2c_read(8'h77);
+        i2c_read(8'hcc);
         i2c_read(8'hff);
         i2c_stop();
 
