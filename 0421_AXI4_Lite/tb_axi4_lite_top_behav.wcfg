@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_axi4_lite_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_axi4_lite_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="595001fs"></ZoomEndTime>
+      <Cursor1Time time="385000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="147"></NameColumnWidth>
+      <ValueColumnWidth column_width="70"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="107" />
+   <wvobject fp_name="group164" type="group">
+      <obj_property name="label">top</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_axi4_lite_top/ACLK" type="logic">
+         <obj_property name="ElementShortName">ACLK</obj_property>
+         <obj_property name="ObjectShortName">ACLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/ARESETn" type="logic">
+         <obj_property name="ElementShortName">ARESETn</obj_property>
+         <obj_property name="ObjectShortName">ARESETn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/transfer" type="logic">
+         <obj_property name="ElementShortName">transfer</obj_property>
+         <obj_property name="ObjectShortName">transfer</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/ready" type="logic">
+         <obj_property name="ElementShortName">ready</obj_property>
+         <obj_property name="ObjectShortName">ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/addr" type="array">
+         <obj_property name="ElementShortName">addr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">addr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/wdata" type="array">
+         <obj_property name="ElementShortName">wdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/write" type="logic">
+         <obj_property name="ElementShortName">write</obj_property>
+         <obj_property name="ObjectShortName">write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_axi4_lite_top/rdata" type="array">
+         <obj_property name="ElementShortName">rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/ACLK" type="logic">
+      <obj_property name="ElementShortName">ACLK</obj_property>
+      <obj_property name="ObjectShortName">ACLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/ARESETn" type="logic">
+      <obj_property name="ElementShortName">ARESETn</obj_property>
+      <obj_property name="ObjectShortName">ARESETn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/transfer" type="logic">
+      <obj_property name="ElementShortName">transfer</obj_property>
+      <obj_property name="ObjectShortName">transfer</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/ready" type="logic">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/addr" type="array">
+      <obj_property name="ElementShortName">addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/wdata" type="array">
+      <obj_property name="ElementShortName">wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/write" type="logic">
+      <obj_property name="ElementShortName">write</obj_property>
+      <obj_property name="ObjectShortName">write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/rdata" type="array">
+      <obj_property name="ElementShortName">rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/AWADDR" type="array">
+      <obj_property name="ElementShortName">AWADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">AWADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/AWVALID" type="logic">
+      <obj_property name="ElementShortName">AWVALID</obj_property>
+      <obj_property name="ObjectShortName">AWVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/AWREADY" type="logic">
+      <obj_property name="ElementShortName">AWREADY</obj_property>
+      <obj_property name="ObjectShortName">AWREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/WDATA" type="array">
+      <obj_property name="ElementShortName">WDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/WVALID" type="logic">
+      <obj_property name="ElementShortName">WVALID</obj_property>
+      <obj_property name="ObjectShortName">WVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/WREADY" type="logic">
+      <obj_property name="ElementShortName">WREADY</obj_property>
+      <obj_property name="ObjectShortName">WREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/BRESP" type="array">
+      <obj_property name="ElementShortName">BRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">BRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/BVALID" type="logic">
+      <obj_property name="ElementShortName">BVALID</obj_property>
+      <obj_property name="ObjectShortName">BVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/BREADY" type="logic">
+      <obj_property name="ElementShortName">BREADY</obj_property>
+      <obj_property name="ObjectShortName">BREADY</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">AR</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/ARADDR" type="array">
+      <obj_property name="ElementShortName">ARADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ARADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/ARVALID" type="logic">
+      <obj_property name="ElementShortName">ARVALID</obj_property>
+      <obj_property name="ObjectShortName">ARVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/ARREADY" type="logic">
+      <obj_property name="ElementShortName">ARREADY</obj_property>
+      <obj_property name="ObjectShortName">ARREADY</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">R</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/RDATA" type="array">
+      <obj_property name="ElementShortName">RDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/RVALID" type="logic">
+      <obj_property name="ElementShortName">RVALID</obj_property>
+      <obj_property name="ObjectShortName">RVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/RREADY" type="logic">
+      <obj_property name="ElementShortName">RREADY</obj_property>
+      <obj_property name="ObjectShortName">RREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/RRESP" type="array">
+      <obj_property name="ElementShortName">RRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">RRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">Master</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ACLK" type="logic">
+      <obj_property name="ElementShortName">ACLK</obj_property>
+      <obj_property name="ObjectShortName">ACLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ARESETn" type="logic">
+      <obj_property name="ElementShortName">ARESETn</obj_property>
+      <obj_property name="ObjectShortName">ARESETn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/AWADDR" type="array">
+      <obj_property name="ElementShortName">AWADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">AWADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/AWVALID" type="logic">
+      <obj_property name="ElementShortName">AWVALID</obj_property>
+      <obj_property name="ObjectShortName">AWVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/AWREADY" type="logic">
+      <obj_property name="ElementShortName">AWREADY</obj_property>
+      <obj_property name="ObjectShortName">AWREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/WDATA" type="array">
+      <obj_property name="ElementShortName">WDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/WVALID" type="logic">
+      <obj_property name="ElementShortName">WVALID</obj_property>
+      <obj_property name="ObjectShortName">WVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/WREADY" type="logic">
+      <obj_property name="ElementShortName">WREADY</obj_property>
+      <obj_property name="ObjectShortName">WREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/BRESP" type="array">
+      <obj_property name="ElementShortName">BRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">BRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/BVALID" type="logic">
+      <obj_property name="ElementShortName">BVALID</obj_property>
+      <obj_property name="ObjectShortName">BVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/BREADY" type="logic">
+      <obj_property name="ElementShortName">BREADY</obj_property>
+      <obj_property name="ObjectShortName">BREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ARADDR" type="array">
+      <obj_property name="ElementShortName">ARADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ARADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ARVALID" type="logic">
+      <obj_property name="ElementShortName">ARVALID</obj_property>
+      <obj_property name="ObjectShortName">ARVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ARREADY" type="logic">
+      <obj_property name="ElementShortName">ARREADY</obj_property>
+      <obj_property name="ObjectShortName">ARREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/RDATA" type="array">
+      <obj_property name="ElementShortName">RDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/RVALID" type="logic">
+      <obj_property name="ElementShortName">RVALID</obj_property>
+      <obj_property name="ObjectShortName">RVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/RREADY" type="logic">
+      <obj_property name="ElementShortName">RREADY</obj_property>
+      <obj_property name="ObjectShortName">RREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/RRESP" type="array">
+      <obj_property name="ElementShortName">RRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">RRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/transfer" type="logic">
+      <obj_property name="ElementShortName">transfer</obj_property>
+      <obj_property name="ObjectShortName">transfer</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ready" type="logic">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/addr" type="array">
+      <obj_property name="ElementShortName">addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/wdata" type="array">
+      <obj_property name="ElementShortName">wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/write" type="logic">
+      <obj_property name="ElementShortName">write</obj_property>
+      <obj_property name="ObjectShortName">write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/rdata" type="array">
+      <obj_property name="ElementShortName">rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/w_ready" type="logic">
+      <obj_property name="ElementShortName">w_ready</obj_property>
+      <obj_property name="ObjectShortName">w_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/r_ready" type="logic">
+      <obj_property name="ElementShortName">r_ready</obj_property>
+      <obj_property name="ObjectShortName">r_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/aw_state" type="array">
+      <obj_property name="ElementShortName">aw_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/aw_state_next" type="array">
+      <obj_property name="ElementShortName">aw_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/w_state" type="array">
+      <obj_property name="ElementShortName">w_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">w_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/w_state_next" type="array">
+      <obj_property name="ElementShortName">w_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">w_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/b_state" type="array">
+      <obj_property name="ElementShortName">b_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">b_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/b_state_next" type="array">
+      <obj_property name="ElementShortName">b_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">b_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ar_state" type="array">
+      <obj_property name="ElementShortName">ar_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/ar_state_next" type="array">
+      <obj_property name="ElementShortName">ar_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/r_state" type="array">
+      <obj_property name="ElementShortName">r_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_MASTER/r_state_next" type="array">
+      <obj_property name="ElementShortName">r_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">SLAVE</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ACLK" type="logic">
+      <obj_property name="ElementShortName">ACLK</obj_property>
+      <obj_property name="ObjectShortName">ACLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ARESETn" type="logic">
+      <obj_property name="ElementShortName">ARESETn</obj_property>
+      <obj_property name="ObjectShortName">ARESETn</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">AW</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/AWADDR" type="array">
+      <obj_property name="ElementShortName">AWADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">AWADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/AWVALID" type="logic">
+      <obj_property name="ElementShortName">AWVALID</obj_property>
+      <obj_property name="ObjectShortName">AWVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/AWREADY" type="logic">
+      <obj_property name="ElementShortName">AWREADY</obj_property>
+      <obj_property name="ObjectShortName">AWREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/aw_addr" type="array">
+      <obj_property name="ElementShortName">aw_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">W</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/WDATA" type="array">
+      <obj_property name="ElementShortName">WDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/WVALID" type="logic">
+      <obj_property name="ElementShortName">WVALID</obj_property>
+      <obj_property name="ObjectShortName">WVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/WREADY" type="logic">
+      <obj_property name="ElementShortName">WREADY</obj_property>
+      <obj_property name="ObjectShortName">WREADY</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">B</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/BRESP" type="array">
+      <obj_property name="ElementShortName">BRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">BRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/BVALID" type="logic">
+      <obj_property name="ElementShortName">BVALID</obj_property>
+      <obj_property name="ObjectShortName">BVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/BREADY" type="logic">
+      <obj_property name="ElementShortName">BREADY</obj_property>
+      <obj_property name="ObjectShortName">BREADY</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">AR</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ARADDR" type="array">
+      <obj_property name="ElementShortName">ARADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ARADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ARVALID" type="logic">
+      <obj_property name="ElementShortName">ARVALID</obj_property>
+      <obj_property name="ObjectShortName">ARVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ARREADY" type="logic">
+      <obj_property name="ElementShortName">ARREADY</obj_property>
+      <obj_property name="ObjectShortName">ARREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ar_addr" type="array">
+      <obj_property name="ElementShortName">ar_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider295">
+      <obj_property name="label">R</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/RDATA" type="array">
+      <obj_property name="ElementShortName">RDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/RVALID" type="logic">
+      <obj_property name="ElementShortName">RVALID</obj_property>
+      <obj_property name="ObjectShortName">RVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/RREADY" type="logic">
+      <obj_property name="ElementShortName">RREADY</obj_property>
+      <obj_property name="ObjectShortName">RREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/RRESP" type="array">
+      <obj_property name="ElementShortName">RRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">RRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/mem" type="array">
+      <obj_property name="ElementShortName">mem[0:63][31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[0:63][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/r_state" type="array">
+      <obj_property name="ElementShortName">r_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/r_state_next" type="array">
+      <obj_property name="ElementShortName">r_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/aw_addr" type="array">
+      <obj_property name="ElementShortName">aw_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/aw_addr_next" type="array">
+      <obj_property name="ElementShortName">aw_addr_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_addr_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ar_addr" type="array">
+      <obj_property name="ElementShortName">ar_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ar_addr_next" type="array">
+      <obj_property name="ElementShortName">ar_addr_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_addr_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/write_plag" type="logic">
+      <obj_property name="ElementShortName">write_plag</obj_property>
+      <obj_property name="ObjectShortName">write_plag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ar_state" type="array">
+      <obj_property name="ElementShortName">ar_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/ar_state_next" type="array">
+      <obj_property name="ElementShortName">ar_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/aw_state" type="array">
+      <obj_property name="ElementShortName">aw_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/aw_state_next" type="array">
+      <obj_property name="ElementShortName">aw_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/w_state" type="array">
+      <obj_property name="ElementShortName">w_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">w_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/w_state_next" type="array">
+      <obj_property name="ElementShortName">w_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">w_state_next[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/w_data" type="array">
+      <obj_property name="ElementShortName">w_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">w_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/b_state" type="array">
+      <obj_property name="ElementShortName">b_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">b_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_axi4_lite_top/dut/U_SLAVE/b_state_next" type="array">
+      <obj_property name="ElementShortName">b_state_next[31:0]</obj_property>
+      <obj_property name="ObjectShortName">b_state_next[31:0]</obj_property>
+   </wvobject>
+</wave_config>
