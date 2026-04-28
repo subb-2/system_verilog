@@ -1,0 +1,135 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+
+//구조체 : 변수들을 하나로 묶은 것
+typedef struct {
+	uint32_t CR;
+	uint32_t IDR;
+	uint32_t ODR;
+}GPIO_Typedef_t;
+
+#define XPAR_GPIO8_0_S00_AXI_BASEADDR 0x44A00000
+#define XPAR_GPIO8_1_S00_AXI_BASEADDR 0x44A10000
+
+#define GPIOA_CR	(*(uint32_t*) (XPAR_GPIO8_0_S00_AXI_BASEADDR + 0x00))
+#define GPIOA_IDR	(*(uint32_t*) (XPAR_GPIO8_0_S00_AXI_BASEADDR + 0x04))
+#define GPIOA_ODR	(*(uint32_t*) (XPAR_GPIO8_0_S00_AXI_BASEADDR + 0x08))
+
+#define GPIOB_CR	(*(uint32_t*) (XPAR_GPIO8_1_S00_AXI_BASEADDR + 0x00))
+#define GPIOB_IDR	(*(uint32_t*) (XPAR_GPIO8_1_S00_AXI_BASEADDR + 0x04))
+#define GPIOB_ODR	(*(uint32_t*) (XPAR_GPIO8_1_S00_AXI_BASEADDR + 0x08))
+
+//GPIO_Typedef_t : 메모리 모양
+#define GPIOA ((GPIO_Typedef_t *) (XPAR_GPIO8_0_S00_AXI_BASEADDR))
+#define GPIOB ((GPIO_Typedef_t *) (XPAR_GPIO8_1_S00_AXI_BASEADDR))
+
+#define GPIO_PIN_0 0x01 //0b00000001
+#define GPIO_PIN_1 0x02 //0b00000010
+#define GPIO_PIN_2 0x04 //0b00000100
+#define GPIO_PIN_3 0x08 //0b00001000
+#define GPIO_PIN_4 0x10 //0b00010000
+#define GPIO_PIN_5 0x20 //0b00100000
+#define GPIO_PIN_6 0x40 //0b01000000
+#define GPIO_PIN_7 0x80 //0b10000000
+
+#define INPUT 0
+#define OUTPUT 1
+
+#define RESET 0
+#define SET 1
+
+//typedef unint32_t unsigned int : 이렇게 선언이 되어있음
+
+void GPIO_SetMode(GPIO_Typedef_t* GPIOx, uint32_t GPIO_PIN, int GPIO_Dir) {
+	//GPIOx->CR |= (INOUT << GPIO_PIN_x);
+	if (GPIO_Dir == OUTPUT) {
+		GPIOx->CR |= GPIO_PIN;
+	} else {
+		GPIOx->CR &= ~(GPIO_PIN);
+	}
+}
+
+void GPIO_WritePin(GPIO_Typedef_t *GPIOx, uint32_t GPIO_PIN, int level) {
+	if (level == SET) {
+		GPIOx->ODR |= GPIO_PIN;
+	} else {
+		GPIOx->ODR &= ~GPIO_PIN;
+	}
+}
+
+uint32_t GPIO_ReadPin(GPIO_Typedef_t *GPIOx, uint32_t GPIO_PIN) {
+	return (GPIOx->IDR & GPIO_PIN) ? 1 : 0; //괄호 안이 0이면 거짓이고 0이 아닌 것은 모두 참
+}
+
+void GPIO_WritePort(GPIO_Typedef_t *GPIOx, uint32_t GPIO_PIN, int data){
+	GPIOx->ODR = data;
+}
+
+void GPIO_ReadPort(GPIO_Typedef_t *GPIOx){
+	return(GPIOx->IDR);
+}
+
+int main()
+{
+	//초기화 -> 입 출력 정의
+	//GPIOA_CR = 0x0f; //out , 상위 4bit = in
+	//GPIOB_CR = 0xff; //out
+	//화살표는 * 붙인 것과 마찬가지
+	GPIOA->CR = 0x0f;
+	GPIOB->CR = 0xff;
+
+	GPIO_SetMode(GPIOA, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, OUTPUT);
+
+	GPIO_SetMode(GPIOA, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, INPUT);
+
+
+	while(1)
+	{
+		//write 기능
+		//GPIOB_ODR = 0x00;
+		GPIOB->ODR = 0x00;
+
+		GPIO_WritePin(GPIOA, GPIO_PIN_0, RESET);
+		GPIO_WritePin(GPIOA, GPIO_PIN_1, SET);
+
+		if (GPIO_ReadPin(GPIOA, GPIO_PIN_4)){
+			GPIOA->ODR &= ~(1 << 0);
+			GPIO_WritePin(GPIOA, GPIO_PIN_0, RESET);
+		}
+		//IDR 값을 읽고 masking
+		if ((GPIOA->IDR & (1 << 4))) {
+			GPIOA->ODR &= ~(1 << 0); // digit 모두 선택
+		}
+		else if ((GPIOA->IDR & (1 << 5))) {
+			GPIOA->ODR &= ~(1 << 1); // digit 모두 선택
+		}
+		else if ((GPIOA->IDR & (1 << 6))) {
+			GPIOA->ODR &= ~(1 << 2); // digit 모두 선택
+		}
+		else if ((GPIOA->IDR & (1 << 7))) {
+			GPIOA->ODR &= ~(1 << 3); // digit 모두 선택
+		}
+		else {
+			GPIOA->ODR |= (0x0f); // 하위 4bit 1로 만들기
+		}
+//				if ((GPIOA_IDR & (1 << 4))) {
+//					GPIOA_ODR &= ~(1 << 0); // digit 모두 선택
+//				}
+//				else if ((GPIOA_IDR & (1 << 5))) {
+//					GPIOA_ODR &= ~(1 << 1); // digit 모두 선택
+//				}
+//				else if ((GPIOA_IDR & (1 << 6))) {
+//					GPIOA_ODR &= ~(1 << 2); // digit 모두 선택
+//				}
+//				else if ((GPIOA_IDR & (1 << 7))) {
+//					GPIOA_ODR &= ~(1 << 3); // digit 모두 선택
+//				}
+//				else {
+//					GPIOA_ODR |= (0x0f);
+//				}
+	}
+
+	return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+
+
+int main()
+{
+	char str[30] = {"Hello Vitis"};
+	int a, b, sum;
+	a = 10;
+	b = 20;
+	sum = a + b;
+
+	xil_printf("str : %s", str);
+	xil_printf(" a(%d) + b(%d) = %d\n", a, b, sum);
+
+
+	return 0;
+}

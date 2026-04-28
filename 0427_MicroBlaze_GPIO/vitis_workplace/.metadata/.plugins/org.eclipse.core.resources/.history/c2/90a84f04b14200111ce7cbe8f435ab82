@@ -1,0 +1,20 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+#include "HAL/GPIO/GPIO.h"
+#include "driver/FND/FND.h"
+
+int main()
+{
+	FND_Init();
+	//uint16_t counter;
+	FND_SetNum(1234);
+	while(1)
+	{
+		FND_Digit();
+		usleep(1000);
+	}
+
+	return 0;
+}

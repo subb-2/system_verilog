@@ -1,0 +1,13 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+
+
+int main()
+{
+	char str[30] = {"Hello Vitis"};
+	xil_printf("str : %s", str);
+
+	return 0;
+}

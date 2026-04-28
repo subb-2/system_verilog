@@ -1,0 +1,30 @@
+#include <stdint.h>
+//#include "xparameters.h"
+//#include "xil_printf.h"
+#include "driver/FND/FND.h"
+#include "common/common.h"
+
+int main()
+{
+	FND_Init();
+
+	uint16_t counter = 0;
+	//FND_SetNum(1234);
+	//uint32_t prevTimeDisp = 0;
+	uint32_t prevTimeCounter = 0;
+
+	while(1)
+	{
+		if(millis() - prevTimeCounter >= 100) {
+			//0.1s 간격으로 증가
+			prevTimeCounter = millis();
+			FND_SetNum(counter++);
+		}
+
+		FND_Digit();
+		delay_ms(1);
+		millis_inc();
+	}
+
+	return 0;
+}

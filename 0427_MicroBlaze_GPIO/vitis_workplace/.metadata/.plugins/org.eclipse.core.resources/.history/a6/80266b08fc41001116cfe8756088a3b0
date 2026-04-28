@@ -1,0 +1,29 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+
+#define XPAR_GPIO8_0_S00_AXI_BASEADDR 0x44A00000
+#define XPAR_GPIO8_1_S00_AXI_BASEADDR 0x44A10000
+
+#define GPIOA_CR	(*(uint32_t*) (XPAR_GPIO8_0_S00_AXI_BASEADDR + 0x00))
+#define GPIOA_IDR	(*(uint32_t*) (XPAR_GPIO8_0_S00_AXI_BASEADDR + 0x04))
+#define GPIOA_ODR	(*(uint32_t*) (XPAR_GPIO8_0_S00_AXI_BASEADDR + 0x08))
+
+#define GPIOB_CR	(*(uint32_t*) (XPAR_GPIO8_1_S00_AXI_BASEADDR + 0x00))
+#define GPIOB_IDR	(*(uint32_t*) (XPAR_GPIO8_1_S00_AXI_BASEADDR + 0x04))
+#define GPIOB_ODR	(*(uint32_t*) (XPAR_GPIO8_1_S00_AXI_BASEADDR + 0x08))
+
+int main()
+{
+	GPIOA_CR = 0xff; //out
+	(*(uint32_t*) (0x44A00000 + 0x00)) = 0xff;
+	GPIOB_CR = 0xff; //out
+	(*(uint32_t*) (0x44A10000 + 0x00)) = 0xff;
+
+	while(1) {
+
+	}
+
+	return 0;
+}
